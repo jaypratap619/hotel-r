@@ -58,8 +58,10 @@ exports.bookRoom = function (req, res) {
                 number: input.number,
                 user_id: req.session.user.info.user_id,
                 message: input.message,
-                start: input.start,
-                end: input.end
+                start: moment(input.start).format(),
+                end: moment(input.end).format(),
+                accommodation: input.accommodation,
+                email: input.email
             }
 
             db.collection("bookings").insertOne(booking, function(err) {
