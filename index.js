@@ -3,7 +3,8 @@ require('dotenv').config({path: __dirname + '/.env'});
 const express=require('express'),
     session=require('express-session'),
     cors=require('cors'),
-    auth_routes=require('./routing/auth')
+    auth_routes=require('./routing/auth'),
+    app_routes=require('./routing/app')
 
 global.http = require("http");
 global.common = require("./modules/common/services");
@@ -35,6 +36,7 @@ app.use(session({
 
 //Routes
 app.use('/auth',auth_routes);
+app.use('/app',app_routes);
 
 const server=app.listen(port,()=>{
     console.log(`Server is listening on ${server.address().port}`)

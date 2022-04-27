@@ -157,30 +157,30 @@ exports.signIn = function (req, res) {
     });
 }
 
-// exports.authenticateJWT = function(req, res, next) {
+exports.authenticateJWT = function(req, res, next) {
     
-//     common.isValidToken(req.headers["token"], function(err, data) {
-//         if(err) {
-//             req.err = {
-//                 status: 401,
-//                 message: fixedData.errors.unauthenticated,
-//                 error: "User token invalid or expired"
-//             }
-//             errorHandler.handle(req, res);
-//         } else {
-//             if(!req.session) req.session = {};
+    common.isValidToken(req.headers["token"], function(err, data) {
+        if(err) {
+            req.err = {
+                status: 401,
+                message: fixedData.errors.unauthenticated,
+                error: "User token invalid or expired"
+            }
+            errorHandler.handle(req, res);
+        } else {
+            if(!req.session) req.session = {};
 
-//             var userSession = {
-//                 info: {}
-//             };
+            var userSession = {
+                info: {}
+            };
 
-//             Object.keys(data).map(function(key) {
-//                 userSession.info[key] = data[key];
-//             })
+            Object.keys(data).map(function(key) {
+                userSession.info[key] = data[key];
+            })
 
-//             req.session.user = userSession;
+            req.session.user = userSession;
 
-//             next();
-//         }
-//     })
-// }
+            next();
+        }
+    })
+}
