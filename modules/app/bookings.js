@@ -92,7 +92,7 @@ exports.getAllBookings = function (req, res) {
 
         dbConfig.getDBConnection("mongo", function(err, db) {
 
-            db.collection("bookings").find({user_id: req.session.user.info.id}).toArray(function(err, bookings) {
+            db.collection("bookings").find({user_id: req.session.user.info.user_id}).toArray(function(err, bookings) {
                 callback(err, bookings);
             })
 
